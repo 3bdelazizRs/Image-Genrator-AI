@@ -39,6 +39,10 @@ dependencies:
   http:
   dio:
   image_gallery_saver:
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  image_path : "assets/icons.jpg"
 
 
 dev_dependencies:
