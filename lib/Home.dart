@@ -20,11 +20,13 @@ class _HomeState extends State<Home> {
   bool isLoading = false;
   String? linkImage;
   void genrateImage() async {
+    //TO USE EDEN AI :
     const apiKey =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTcwMzIzMWQtZWEwZS00Nzg3LWEwMDItODRjNDA5ZTJmNWVkIiwidHlwZSI6ImFwaV90b2tlbiJ9.0RJewdkfrylgp_ECvylF7tzFlGZKt5KDCmO1pD_Yia4';
-    // const apiKey = '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';
     const url = 'https://api.edenai.run/v2/image/generation';
+    //TO USE OPEN AI :
     // const url = 'https://api.openai.com/v1/images/generations';
+
     if (prompConroller.text.isNotEmpty) {
       setState(() {
         isLoading = true;
@@ -81,9 +83,8 @@ class _HomeState extends State<Home> {
             ? null
             : IconButton(
                 onPressed: () {
-                  setState(() {
-                    linkImage == null;
-                  });
+                  linkImage == null;
+                  setState(() {});
                   prompConroller.clear();
                 },
                 icon: Icon(
@@ -95,7 +96,63 @@ class _HomeState extends State<Home> {
             : [
                 IconButton(
                     onPressed: () {
-                      saveImage();
+                      // saveImage();
+                      showDialog(
+                          context: context,
+                          builder: ((context) => AlertDialog(
+                                backgroundColor: appbarColor,
+                                title: const Text(
+                                  "Save Image",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                      fontFamily: 'Rubik'),
+                                ),
+                                content: const Text(
+                                  "Would you like to save this image to your gallery?",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                      fontFamily: 'Rubik'),
+                                ),
+                                actions: [
+                                  Container(
+                                    //padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.red),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          "Close",
+                                          style: TextStyle(
+                                              color: Colors.red,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.green[800],
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: TextButton(
+                                        onPressed: () {
+                                          if (linkImage != null) {
+                                            saveImage();
+                                            Navigator.of(context).pop();
+                                          } else {}
+
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Save",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600))),
+                                  ),
+                                ],
+                              )));
                     },
                     icon: Icon(
                       Icons.download,
