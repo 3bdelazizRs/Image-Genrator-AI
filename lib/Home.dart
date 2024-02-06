@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
   void genrateImage() async {
     //TO USE EDEN AI :
     const apiKey =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTcwMzIzMWQtZWEwZS00Nzg3LWEwMDItODRjNDA5ZTJmNWVkIiwidHlwZSI6ImFwaV90b2tlbiJ9.0RJewdkfrylgp_ECvylF7tzFlGZKt5KDCmO1pD_Yia4';
+        'YOUR_KEY_HERE';
     const url = 'https://api.edenai.run/v2/image/generation';
     //TO USE OPEN AI :
     // const url = 'https://api.openai.com/v1/images/generations';
@@ -117,8 +117,8 @@ class _HomeState extends State<Home> {
                                       fontFamily: 'Rubik'),
                                 ),
                                 actions: [
+                                  //Close Button
                                   Container(
-                                    //padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                         border: Border.all(color: Colors.red),
                                         borderRadius: BorderRadius.circular(8)),
@@ -133,6 +133,7 @@ class _HomeState extends State<Home> {
                                               fontWeight: FontWeight.w600),
                                         )),
                                   ),
+                                  //Save Button
                                   Container(
                                     decoration: BoxDecoration(
                                         color: Colors.green[800],
@@ -141,8 +142,19 @@ class _HomeState extends State<Home> {
                                         onPressed: () {
                                           if (linkImage != null) {
                                             saveImage();
-                                            Navigator.of(context).pop();
-                                          } else {}
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    backgroundColor:
+                                                        Colors.green[400],
+                                                    content: const Text(
+                                                        "Pic added successfully! Enjoy!",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontFamily:
+                                                                'Rubik'))));
+                                          }
 
                                           Navigator.of(context).pop();
                                         },
@@ -232,25 +244,30 @@ class _HomeState extends State<Home> {
                       genrateImage();
                     }
                   },
-                  child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.generating_tokens,
+                  child: isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
                           color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Generate",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'Rubik',
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ]),
+                        ))
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                              Icon(
+                                Icons.generating_tokens,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Generate",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Rubik',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ]),
                 ),
               )
             ],

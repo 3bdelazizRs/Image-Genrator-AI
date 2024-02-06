@@ -20,7 +20,19 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Center(
-        child: Lottie.asset("assets/s_loading.json"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                //color: Colors.deepOrangeAccent,
+                child: Lottie.asset("assets/loading_s.json",
+                    width: 150, height: 100, fit: BoxFit.fill)),
+            Text(
+              "Image Generator AI",
+              style: TextStyle(color: Colors.white, fontFamily: 'Rubik'),
+            )
+          ],
+        ),
       ),
     );
   }
