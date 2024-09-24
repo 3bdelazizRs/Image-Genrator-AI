@@ -47,7 +47,11 @@ Contributions to the Flutter AI Image Generator project are welcome and encourag
 This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
-
+[![LinkedIn][linkedin-shield]][linkedin-url]
 For any inquiries or suggestions regarding the Flutter AI Image Generator project, feel free to contact us at [3bdelazizrass@gmail.com](mailto:3bdelazizrass@gmail.com).
 
 ---
+
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]:https://www.linkedin.com/in/fatiha-laaouafi-4227252ba/
